@@ -78,4 +78,47 @@ public class Vector<E> implements Iterable<E>
 		}
 		return s;
 	}
+
+	public E get(int index)
+	{
+		if((index >= size) || (index < 0))
+			throw new ArrayIndexOutOfBoundsException("You tried to get a value at position " + index + ", but the size of array is " + size);
+		return (E) data[index];
+	}
+
+	public int size()
+	{
+		return size;
+	}
+
+	public E remove(int index)
+	{
+		if((index >= size) || (index < 0))
+			throw new ArrayIndexOutOfBoundsException("You tried to remove a value at position " + index + ", but the size of array is " + size);
+		E output = (E) data[index];
+		for(int i = index; i < size - 1; i++)
+		{
+			data[i] = data[i + 1];
+		}
+		size--;
+		return output;
+	}
+
+	public boolean remove(E obj)
+	{
+		if(contains(obj) == false)
+			return false;
+		int i = indexOf(obj);
+		remove(i);
+		return true;
+	}
+
+	public E set(int index, E obj)
+	{
+		if((index >= size) || (index < 0))
+			throw new ArrayIndexOutOfBoundsException("tried to set a value at spot " + index + ", size of array is " + size);
+		E output = (E) data[index];
+		data[index] = obj;
+		return output;
+	}
 }
